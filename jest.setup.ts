@@ -21,7 +21,33 @@ jest.mock('expo-splash-screen', () => ({
   hideAsync: jest.fn(),
 }));
 
-// AsyncStorage mock — provided by the community package.
-jest.mock('@react-native-async-storage/async-storage', () =>
-  require('@react-native-async-storage/async-storage/jest/async-storage-mock')
-);
+// In-memory AsyncStorage mock — works reliably across pnpm and Expo SDK 57.
+jest.mock('@react-native-async-storage/async-storage', () => {
+  const store = new Map<string, string>();
+
+  return {
+    __esModule: true,
+    default: {
+      getItem: jest.fn(async (key: string) => store.get(key) ?? null),
+      setItem: jest.fn(async (key: string, value: string) => {
+        store.set(key, value);
+      }),
+      removeItem: jest.fn(async (key: string) => {
+        store.delete(key);
+      }),
+      clear: jest.fn(async () => {
+        store.clear();
+      }),
+      getAllKeys: jest.fn(async () => Array.from(store.keys())),
+      multiGet: jest.fn(async (keys: string[]) =>
+        keys.map((k) => [k, store.get(k) ?? null] as [string, string | null])
+      ),
+      multiSet: jest.fn(async (entries: [string, string][]) => {
+        entries.forEach(([k, v]) => store.set(k, v));
+      }),
+      multiRemove: jest.fn(async (keys: string[]) => {
+        keys.forEach((k) => store.delete(k));
+      }),
+    },
+  };
+});
