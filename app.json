@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "İmam Notları",
+    "slug": "imam-notlari",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "imamnotlari",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FAF7F0"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mucahidtech.imamnotlari"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundColor": "#FAF7F0"
+      },
+      "package": "com.mucahidtech.imamnotlari",
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-sharing",
+      "expo-localization",
+      "expo-web-browser",
+      "expo-font",
+      "expo-splash-screen"
+    ]
+  }
+}
