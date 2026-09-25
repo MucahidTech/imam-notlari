@@ -3,6 +3,7 @@
 
 import '@testing-library/jest-native/extend-expect';
 
+require('dotenv').config({ quiet: true });
 // Silence Reanimated warnings in tests.
 jest.mock('react-native-reanimated', () => {
   const Reanimated = require('react-native-reanimated/mock');
