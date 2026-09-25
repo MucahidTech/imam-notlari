@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
-// Global Jest setup — runs before each test suite.
+// Global Jest setup — runs after the test environment is initialized.
 
 import '@testing-library/jest-native/extend-expect';
 
-require('dotenv').config({ quiet: true });
 // Silence Reanimated warnings in tests.
 jest.mock('react-native-reanimated', () => {
   const Reanimated = require('react-native-reanimated/mock');
